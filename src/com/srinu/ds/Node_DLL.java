@@ -1,4 +1,4 @@
-package com.srinu.practice;
+package com.srinu.ds;
 
 public class Node_DLL {
 	int data;

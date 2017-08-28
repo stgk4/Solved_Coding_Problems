@@ -1,4 +1,4 @@
-package com.srinu.practice;
+package com.srinu.ds;
 
 public class DS_Stack {
 	Node_SLL top = null;
