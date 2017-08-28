@@ -1,5 +1,5 @@
 package com.srinu.practice;
 
-public class LinkedList {
+public class SLL_Node {
 
 }
