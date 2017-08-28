@@ -18,4 +18,21 @@ public class SLL_Node {
 		}
 		n.next = new_node;
 	}
+	
+	public SLL_Node deleteNode(SLL_Node head, int d) {
+		SLL_Node n = head;
+	
+		if(n.data==d) {
+			return head.next; //new head after deleting the old
+		}
+		
+		while(n.next!=null) {
+			if(n.next.data==d) {
+				n.next = n.next.next;
+				return head; //same old head
+			}
+			n=n.next;
+		}
+		return head;
+	}
 }
