@@ -1,10 +1,10 @@
 package com.srinu.practice;
 
 public class DS_Stack {
-	SLL_Node top = null;
+	Node_SLL top = null;
 	
 	public void push(int data) {
-		SLL_Node new_node = new SLL_Node(data);
+		Node_SLL new_node = new Node_SLL(data);
 		new_node.next = top;
 		top = new_node;
 	}

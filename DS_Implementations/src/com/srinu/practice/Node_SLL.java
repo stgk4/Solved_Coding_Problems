@@ -1,17 +1,17 @@
 package com.srinu.practice;
 
-public class SLL_Node {
-	SLL_Node next;
+public class Node_SLL {
+	Node_SLL next;
 	int data;
 	
-	public SLL_Node(int data) {
+	public Node_SLL(int data) {
 		this.data = data;
 		next = null;
 	}
 	
 	public void appendToTail(int d) {
-		SLL_Node new_node = new SLL_Node(d);
-		SLL_Node n = this;
+		Node_SLL new_node = new Node_SLL(d);
+		Node_SLL n = this;
 		
 		while(n.next!=null) {
 			n=n.next;
@@ -19,8 +19,8 @@ public class SLL_Node {
 		n.next = new_node;
 	}
 	
-	public SLL_Node deleteNode(SLL_Node head, int d) {
-		SLL_Node n = head;
+	public Node_SLL deleteNode(Node_SLL head, int d) {
+		Node_SLL n = head;
 	
 		if(n.data==d) {
 			return head.next; //new head after deleting the old

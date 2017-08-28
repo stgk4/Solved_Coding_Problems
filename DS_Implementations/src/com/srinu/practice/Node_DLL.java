@@ -1,18 +1,18 @@
 package com.srinu.practice;
 
-public class DLL_Node {
+public class Node_DLL {
 	int data;
-	DLL_Node prev, next;
+	Node_DLL prev, next;
 	
-	public DLL_Node(int data) {
+	public Node_DLL(int data) {
 		this.data = data;
 		prev = null;
 		next = null;
 	}
 
 	public void appendToTail(int d) {
-		DLL_Node new_node = new DLL_Node(d);
-		DLL_Node n = this;
+		Node_DLL new_node = new Node_DLL(d);
+		Node_DLL n = this;
 		
 		while(n.next!=null) {
 			n=n.next;
@@ -22,8 +22,8 @@ public class DLL_Node {
 	}
 	
 	public void appendToHead(int d) {
-		DLL_Node new_node = new DLL_Node(d);
-		DLL_Node n = this;
+		Node_DLL new_node = new Node_DLL(d);
+		Node_DLL n = this;
 		while(n.prev!=null) {
 			n=n.prev;
 		}
@@ -31,8 +31,8 @@ public class DLL_Node {
 		n.prev.next = n; //alternatively new_node.next = n;
 	}
 	
-	public DLL_Node deleteNode(DLL_Node head, int d) {
-		DLL_Node n = head;
+	public Node_DLL deleteNode(Node_DLL head, int d) {
+		Node_DLL n = head;
 		
 		if(n.data==d) {
 			n.next.prev = null;
