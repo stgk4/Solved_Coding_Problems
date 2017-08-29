@@ -1,4 +1,4 @@
-package com.practice.gg;
+package com.srinu.oldfiles;
 import java.util.Scanner;
 import java.util.Stack;
 

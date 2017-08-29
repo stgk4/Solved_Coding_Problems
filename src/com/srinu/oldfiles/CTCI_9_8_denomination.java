@@ -1,4 +1,4 @@
-package com.practice.ctci;
+package com.srinu.oldfiles;
 
 public class CTCI_9_8_denomination {
 

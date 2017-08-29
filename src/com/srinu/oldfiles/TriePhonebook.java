@@ -1,4 +1,4 @@
-package com.fb.concepts;
+package com.srinu.oldfiles;
 
 import java.util.HashMap;
 import java.util.Scanner;

@@ -1,6 +1,6 @@
-package com.practice.threadsconcurrency;
+package com.srinu.oldfiles;
 
-import java.util.concurrent.atomic.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class NonBlockingStack {
 

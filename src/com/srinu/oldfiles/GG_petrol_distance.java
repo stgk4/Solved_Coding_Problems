@@ -1,4 +1,4 @@
-package com.practice.gg;
+package com.srinu.oldfiles;
 
 public class GG_petrol_distance {
 

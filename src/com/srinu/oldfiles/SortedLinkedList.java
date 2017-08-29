@@ -1,4 +1,4 @@
-package com.fb.concepts;
+package com.srinu.oldfiles;
 
 /*
  * To execute Java, please define "static void main" on a class
@@ -21,10 +21,10 @@ class SortedLinkedList {
 }
 
 //LinkedList node
-class Node{
+class Node_LL{
 	int data;
-	Node next;
-	public Node(int value){
+	Node_LL next;
+	public Node_LL(int value){
 		data = value;
 		next=null;
 	} 
@@ -32,16 +32,16 @@ class Node{
 
 //LinkedList clas
 class LinkedList{
-	Node head; 
+	Node_LL head; 
 
-	public Node add(int val){
-		Node new_node = new Node(val);
+	public Node_LL add(int val){
+		Node_LL new_node = new Node_LL(val);
 		if(head==null || head.data>=new_node.data){
 			new_node.next = head;
 			head = new_node;
 		}
 		else{
-			Node current = head;    
+			Node_LL current = head;    
 			while(current.next!=null && current.next.data<= new_node.data){
 				current = current.next;
 			}
@@ -52,7 +52,7 @@ class LinkedList{
 	}
 
 	public void print(){
-		Node n = head;
+		Node_LL n = head;
 		while(n!=null){
 			System.out.println(n.data);
 			n = n.next;

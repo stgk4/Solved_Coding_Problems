@@ -1,6 +1,5 @@
-package com.practice.trees;
+package com.srinu.oldfiles;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class TwoSumPair {

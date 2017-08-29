@@ -1,4 +1,4 @@
-package com.practice.gg;
+package com.srinu.oldfiles;
 
 public class GG_CheckBinTree_Heap {
 
@@ -71,6 +71,11 @@ public class GG_CheckBinTree_Heap {
 	public static class Node{
 		int data;
 		Node left, right;
+		
+		//favorable varialbes for dfs and bfs
+		public Node adjacent[];
+		public boolean visited;
+		
 		public Node(int data){
 			this.data = data;
 			left = null;

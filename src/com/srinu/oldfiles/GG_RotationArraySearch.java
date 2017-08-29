@@ -1,6 +1,4 @@
-package com.practice.gg;
-
-import java.util.Scanner;
+package com.srinu.oldfiles;
 
 public class GG_RotationArraySearch {
 

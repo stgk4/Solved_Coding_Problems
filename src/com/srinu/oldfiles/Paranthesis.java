@@ -1,4 +1,4 @@
-package com.fb.concepts;
+package com.srinu.oldfiles;
 import java.util.Stack;
 
 
@@ -6,9 +6,9 @@ public class Paranthesis {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		//“{“,”}”,”(“,”)”,”[“,”]” 
-		// true:    “[()]{}{[()()]()}” 
-		// false: “[(])”
+		//“{“,�?}�?,�?(“,�?)�?,�?[“,�?]�? 
+		// true:    “[()]{}{[()()]()}�? 
+		// false: “[(])�?
 		String s1 = "[()]{}{[()()]()}";
 		String s2 = "[(]";
 		String s3 = "";

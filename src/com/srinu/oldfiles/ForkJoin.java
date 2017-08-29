@@ -1,8 +1,8 @@
-package com.practice.threadsconcurrency;
+package com.srinu.oldfiles;
 import java.util.Arrays;
 import java.util.Random;
-import jsr166y.RecursiveAction;
-import jsr166y.ForkJoinPool;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.RecursiveAction;
 
 public class ForkJoin {
 

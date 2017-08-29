@@ -1,12 +1,9 @@
-package com.practice.threadsconcurrency;
+package com.srinu.oldfiles;
 
 import java.util.AbstractQueue;
-import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Queue;
-import java.util.concurrent.atomic.*;
-import java.util.HashMap;
-import java.util.Hashtable;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 public class Concurrent_NB_Queue {

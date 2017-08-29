@@ -1,4 +1,4 @@
-package com.practice.ctci;
+package com.srinu.oldfiles;
 import java.util.ArrayList;
 
 public class CTCI_9_5_permutations {

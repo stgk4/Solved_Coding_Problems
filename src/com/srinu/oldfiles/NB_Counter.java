@@ -1,4 +1,4 @@
-package com.practice.threadsconcurrency;
+package com.srinu.oldfiles;
 
 public class NB_Counter {
 

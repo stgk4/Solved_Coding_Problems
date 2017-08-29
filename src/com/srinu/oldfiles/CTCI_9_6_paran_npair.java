@@ -1,7 +1,7 @@
-package com.practice.ctci;
-import java.util.Set;
-import java.util.HashSet;
+package com.srinu.oldfiles;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class CTCI_9_6_paran_npair {
 

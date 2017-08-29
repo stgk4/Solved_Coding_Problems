@@ -1,4 +1,4 @@
-package com.practice.ctci;
+package com.srinu.oldfiles;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package com.practice.trees;
+package com.srinu.oldfiles;
 
 public class ReverseLinkedList{
 	public static void main(String args[]){

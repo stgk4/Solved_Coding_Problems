@@ -1,4 +1,4 @@
-package com.practice.threadsconcurrency;
+package com.srinu.oldfiles;
 
 public class ProducerConsumerTest {
 	public static void main(String[] args) {
