@@ -69,7 +69,7 @@ public class GG_CheckBinTree_Heap {
 	}
 	
 	public static class Node{
-		int data;
+		public int data;
 		Node left, right;
 		
 		//favorable varialbes for dfs and bfs

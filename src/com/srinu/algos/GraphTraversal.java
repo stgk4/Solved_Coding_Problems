@@ -1,5 +1,8 @@
 package com.srinu.algos;
 
+import java.util.ArrayList;
+import java.util.Queue;
+
 import com.srinu.oldfiles.GG_CheckBinTree_Heap.Node;
 
 public class GraphTraversal {
@@ -22,7 +25,21 @@ public class GraphTraversal {
 		}
 	}
 	
-	public static void bfs() {
+	public static void bfs(Node root) {
+		Queue<Node> queue=null;
+		root.visited=true;
+		queue.add(root);
+		
+		while(!queue.isEmpty()) {
+			Node n = queue.remove();
+			for(Node a: n.adjacent) {
+				if(!a.visited) {
+					a.visited=true;
+					queue.add(a);
+				}
+			}
+		}
+		
 		
 	}
 }
