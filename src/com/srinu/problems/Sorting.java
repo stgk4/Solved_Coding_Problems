@@ -16,8 +16,11 @@ public class Sorting {
 	 * pseudo code: 
 	 * 1create pointers A-pointer=A.size-1, B-pointer=B.size-1
 	 * 2) compare A[left] and B[right] and the highest will go into A[right] and decrement the lowest side index 
-	 * 4) if the left is less than A.size-1
+	 * 3) if elements in A are left, then no need to worry, all are inplace already, if elements in B are 
+	 * left, then we copy them in the front of A
 	 * 
 	 */
+	
+	
 
 }
