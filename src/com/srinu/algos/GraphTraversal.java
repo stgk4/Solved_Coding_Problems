@@ -16,10 +16,9 @@ public class GraphTraversal {
 		if (root==null) return;
 		
 		//visit(root);
-		
 		root.visited = true;
 		for(Node n : root.adjacent) {
-			if(n.visited==false) {
+			if(n.visited==false){
 				dfs(n);
 			}
 		}
