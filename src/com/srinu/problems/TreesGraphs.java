@@ -21,6 +21,8 @@ public class TreesGraphs {
 	 */
 	public static void printCousins(Nodee root, Nodee target, int level) {
 		if(root==null || level<2) return;
+		
+		//print happens only when we boil down to 2 but one node level from height
 		if(level==2) {
 			if(root.left==target || root.right==target) {
 				return;
@@ -75,12 +77,13 @@ public class TreesGraphs {
 	public static void printAtLevel(Nodee root, int h) {
 		if(root==null || h<1) return;
 		
+		//print happens when we only boil down to 1 from total height
 		if(h==1) {
 			System.out.println(root.data);
-		}else {
-			printAtLevel(root.left, h-1);
-			printAtLevel(root.right, h-1);
 		}
+		
+		printAtLevel(root.left, h-1);
+		printAtLevel(root.right, h-1);	
 	}
 	
 	/*
