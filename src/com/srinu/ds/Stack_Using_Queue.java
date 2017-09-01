@@ -1,4 +1,4 @@
-package com.fb.concepts;
+package com.srinu.ds;
 import java.util.Queue;
 import java.util.ArrayDeque;
 import java.util.Arrays;
