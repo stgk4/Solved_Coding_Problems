@@ -13,6 +13,41 @@ public class TreesGraphs {
 		root.right.right= new Nodee(7);
 		System.out.println("HeightOfTree:"+getHeight(root));
 		printLevelOrder(root);
+		
+	}
+	
+	/*
+	 * Method to print cousins at a level
+	 */
+	public static void printCousins(Nodee root, Nodee target, int level) {
+		if(root==null || level<2) return;
+		if(level==2) {
+			if(root.left==target || root.right==target) {
+				return;
+			}
+			if(root.left!=null) {
+				System.out.println(root.left.data);
+			}
+			if(root.right!=null) {
+				System.out.println(root.right.data);
+			}
+		}
+		printCousins(root.left, target, level-1);
+		printCousins(root.right, target, level-1);
+	}
+	
+	/*
+	 * method to find the level of a given node
+	 */
+	public static int getLevel(Nodee root, Nodee target, int level) {
+		if(root==null) return 0;
+		if(root==target) return level;
+		
+		int nextLevel = getLevel(root.left, target, level+1);
+		if(nextLevel!=0) {
+			return level;
+		}
+		return getLevel(root.right, target,level+1);
 	}
 	
 	/*
