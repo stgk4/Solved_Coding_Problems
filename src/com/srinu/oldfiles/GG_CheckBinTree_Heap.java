@@ -1,5 +1,7 @@
 package com.srinu.oldfiles;
 
+import java.util.Stack;
+
 public class GG_CheckBinTree_Heap {
 
 	public static void main(String[] args) {
@@ -31,6 +33,10 @@ public class GG_CheckBinTree_Heap {
 		n = countNodes(root2);
 		System.out.println(n);
 		System.out.println(isComplete(root2, 0, n));
+		
+		Stack<Integer> st = new Stack();
+		st.push(3);
+		st.pop();
 		
 	}
 	
