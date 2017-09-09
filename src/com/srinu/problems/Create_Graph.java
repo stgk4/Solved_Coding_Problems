@@ -6,10 +6,23 @@ public class Create_Graph {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		char [][] input = {{'\\', '/'}, {'\\', '\\'}}; 
+		printCharArray(input);
 
 	}
 	
-	public static Hashtable<Integer, Node> createGraph() {
+	public static void printCharArray(char[][] array) {
+		for(int i=0; i<array.length; i++) {
+			for(int j=0; j<array[0].length; j++) {
+				System.out.print(array[i][j] + " ");
+			}
+			System.out.println();
+		}
+		
+	}
+	
+	public static Hashtable<Integer, Node> createGraph(char[][] input) {
 		
 		return null;
 	}
