@@ -22,6 +22,10 @@ public class Create_Graph {
 		
 	}
 	
+	public static void setNeighbours(Node n, ArrayList<Node> al) {
+		
+	}
+	
 	public static Hashtable<Integer, Node> createGraph(char[][] input) {
 		
 		return null;
