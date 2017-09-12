@@ -23,7 +23,9 @@ public class Create_Graph {
 	}
 	
 	public static void setNeighbours(Node n, ArrayList<Node> al) {
-		
+		for(Node n1: al) {
+			n.adjacent.add(n1);
+		}
 	}
 	
 	public static Hashtable<Integer, Node> createGraph(char[][] input) {
