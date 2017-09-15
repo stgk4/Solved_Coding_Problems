@@ -27,7 +27,7 @@ public class PerceptronLearningAlgo {
 
 		//Assuming that initially all data-points are wrongly classified
 		int wrongly_classified = TOTAL_DATAPOINTS;
-		while (wrongly_classified>1)
+		while (wrongly_classified>0)
 		{
 			System.out.println("Iteration:"+ ++iteration);
 			for (int i = 1;i <=TOTAL_DATAPOINTS;i++ ) {
