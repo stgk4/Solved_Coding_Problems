@@ -2,17 +2,16 @@ package com.srinu.problems;
 
 public class PerceptronLearningAlgo {
 	public static final int TOTAL_DATAPOINTS = 50;
+	
 	public static void main(String[] args)
 	{
+		
 		//defining the training data of 50 points (index:1-50), considering the line equation as a*x1 + b*x2 + c = 0; 
-		int trainingArray_x1[] = new int[51];
-		int trainingArray_x2[] = new int[51];
-		int testArray_x1[] = new int[31];
-		int testArray_x2[] = new int[31];
-		int classLabel[] = new int[51]; 
+		Point[] points = new Point[TOTAL_DATAPOINTS+1];
+		Point[] testPoints = new Point[31];
 
 		//calling a function to create training,test and training data class
-		dataCreation(trainingArray_x1,trainingArray_x2,testArray_x1,testArray_x2,classLabel);
+		dataCreation(points, testPoints);
 
 		// defining initial weights and constants for the equation D = w0 + w1*x1 + w2*x2;
 		double D;
@@ -31,21 +30,21 @@ public class PerceptronLearningAlgo {
 		{
 			System.out.println("Iteration:"+ ++iteration);
 			for (int i = 1;i <=TOTAL_DATAPOINTS;i++ ) {
-				x1 = trainingArray_x1[i];
-				x2 = trainingArray_x2[i];
+				x1 = points[i].x1;
+				x2 = points[i].x2;
 				D = w0 + (w1 *x1) + (w2 * x2) ;
 
 				//System.out.println("D:"+d + " classLabel[i]:"+classLabel[i]);
 				// compare sign of D with sign of classLabel[i]
-				if((D >0 && classLabel[i]>0) || (D<0 && classLabel[i] <0) ){
+				if((D >0 && points[i].sign>0) || (D<0 && points[i].sign <0) ){
 					wrongly_classified--;
 					//System.out.println("if:"+i + "  wrongly_classified:"+wrongly_classified);
 				}else{
 
-					if (D>0 && classLabel[i] < 0 ) { // check if D > 
+					if (D>0 && points[i].sign < 0 ) { // check if D > 
 						sign = -1;
 
-					}else if (D < 0 && classLabel[i]>0){
+					}else if (D < 0 && points[i].sign>0){
 						sign = 1;
 					}
 					w0 =  w0 + (sign * d );
@@ -67,42 +66,55 @@ public class PerceptronLearningAlgo {
 		int k;
 		for ( k = 1;k<=30;k++) {
 
-			x1 = testArray_x1[k];
-			x2 = testArray_x2[k];
+			x1 = testPoints[k].x1;
+			x2 = testPoints[k].x2;
 			D = w0 + w1*x1 + w2*x2;
 			if(D>0){
-				classLabel[k] = 1;
+				testPoints[k].sign = 1;
 			}else 
-				classLabel[k] = -1;
-			System.out.print(classLabel[k] + " ");
+				testPoints[k].sign = -1;
+			System.out.print(testPoints[k].sign + " ");
 		}
 
 	} 
 
-	public static void dataCreation(int trainingArray_x1[],int trainingArray_x2[],int testArray_x1[],int testArray_x2[],int classLabel[]){
+	public static void dataCreation(Point[] points, Point[] testPoints){
 
 		// creating training data set for 50 points 
 		for(int i =1;i<=25;i++) {
-			trainingArray_x1[i] = i;
-			trainingArray_x2[i] = i-1;
-			classLabel[i] = 1;
-
+			Point point = new Point();
+			point.x1 = i;
+			point.x2 = i-1;
+			point.sign = 1;
+			points[i] = point;
 		}
 		for(int i = 26;i<=50;i++){
-
-			trainingArray_x1[i] = i-1;
-			trainingArray_x2[i] = i;
-			classLabel[i] = -1;
-
+			Point point = new Point();
+			point.x1 = i-1;
+			point.x2 = i;
+			point.sign = 1;
+			points[i] = point;
 		}
+		
 		// creating test data points such that 15 of them lie in one class and 15 lie in the other 
 		for (int i = 1;i<= 30;i++) {
-			testArray_x1[i] = i;
-			testArray_x2[i] = -i;
+			Point testPoint = new Point();
+			testPoint.x1 = i;
+			testPoint.x2 = -i;
+			testPoints[i] = testPoint;
 		}
 		for(int i = 15;i<=30;i++){
-			testArray_x1[i] = -i;
-			testArray_x2[i] = i;
+			Point testPoint = new Point();
+			testPoint.x1 = -i;
+			testPoint.x2 = i;
+			testPoints[i] = testPoint;
 		}
 	}
+}
+
+//DataStructure for point with x and y coordinates along with classlabel as sign
+class Point{
+	int x1;
+	int x2;
+	int sign;
 }
