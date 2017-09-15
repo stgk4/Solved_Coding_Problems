@@ -32,6 +32,9 @@ public class FindPairs {
 
 	}
 	
+	/*
+	 * get indices of pair of numbers whose sum is equal to the number at target_index
+	 */
 	public static Pair getTwoPair(ArrayList<Integer> array, int target_index) {
 		int low =0;
 		int high = array.size()-1;
@@ -55,6 +58,9 @@ public class FindPairs {
 
 }
 
+/*
+ * Class to define a pair as a combination of left-index and right-index
+ */
 class Pair{
 	int left, right;
 	Pair(int left, int right){
