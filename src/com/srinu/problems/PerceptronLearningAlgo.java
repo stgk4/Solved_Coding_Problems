@@ -23,7 +23,6 @@ public class PerceptronLearningAlgo {
 		int x1 ,x2;
 
 		int sign = 0;
-		int count = 0;
 		int iteration=0;
 
 		//Assuming that initially all data-points are wrongly classified
@@ -31,23 +30,22 @@ public class PerceptronLearningAlgo {
 		while (wrongly_classified>1)
 		{
 			System.out.println("Iteration:"+ ++iteration);
-			wrongly_classified = TOTAL_DATAPOINTS;
 			for (int i = 1;i <=TOTAL_DATAPOINTS;i++ ) {
-
 				x1 = trainingArray_x1[i];
 				x2 = trainingArray_x2[i];
 				D = w0 + (w1 *x1) + (w2 * x2) ;
+
+				//System.out.println("D:"+d + " dataClass[i]:"+dataClass[i]);
 				// compare sign of D with sign of dataClass[i]
 				if((D >0 && dataClass[i]>0) || (D<0 && dataClass[i] <0) ){
 					wrongly_classified--;
-				}else
-				{
-					count++;
+					//System.out.println("if:"+i + "  wrongly_classified:"+wrongly_classified);
+				}else{
 
 					if (D>0 && dataClass[i] < 0 ) { // check if D > 
 						sign = -1;
 
-					}else if (D < 0 && dataClass[i]<0){
+					}else if (D < 0 && dataClass[i]>0){
 						sign = 1;
 					}
 					w0 =  w0 + (sign * d );
@@ -56,13 +54,15 @@ public class PerceptronLearningAlgo {
 
 				}
 			}
-			System.out.println("Wrongly_Classified:"+wrongly_classified);
-			if(wrongly_classified<=1){
+
+			System.out.println("Wrongly_Classified: " + wrongly_classified);
+			if(wrongly_classified<1){
 				break;
 			}
-			wrongly_classified = TOTAL_DATAPOINTS;	
+			wrongly_classified = TOTAL_DATAPOINTS;//re-inititate back to the total datapoints
 		}
-		System.out.println("w0 is" + w0 +"w1 is" +  w1 +  "w2 is "+ w2 + "number of times loop runs  " + count);
+
+		System.out.println("w0:" + w0 +"\nw1:" +  w1 +  "\nw2:"+ w2 + "\nnumber of times while loop runs  " + iteration);
 
 		int k;
 		for ( k = 1;k<=30;k++) {
