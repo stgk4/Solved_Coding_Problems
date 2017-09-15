@@ -9,10 +9,10 @@ public class PerceptronLearningAlgo {
 		int trainingArray_x2[] = new int[51];
 		int testArray_x1[] = new int[31];
 		int testArray_x2[] = new int[31];
-		int dataClass[] = new int[51]; 
+		int classLabel[] = new int[51]; 
 
 		//calling a function to create training,test and training data class
-		dataCreation(trainingArray_x1,trainingArray_x2,testArray_x1,testArray_x2,dataClass);
+		dataCreation(trainingArray_x1,trainingArray_x2,testArray_x1,testArray_x2,classLabel);
 
 		// defining initial weights and constants for the equation D = w0 + w1*x1 + w2*x2;
 		double D;
@@ -35,17 +35,17 @@ public class PerceptronLearningAlgo {
 				x2 = trainingArray_x2[i];
 				D = w0 + (w1 *x1) + (w2 * x2) ;
 
-				//System.out.println("D:"+d + " dataClass[i]:"+dataClass[i]);
-				// compare sign of D with sign of dataClass[i]
-				if((D >0 && dataClass[i]>0) || (D<0 && dataClass[i] <0) ){
+				//System.out.println("D:"+d + " classLabel[i]:"+classLabel[i]);
+				// compare sign of D with sign of classLabel[i]
+				if((D >0 && classLabel[i]>0) || (D<0 && classLabel[i] <0) ){
 					wrongly_classified--;
 					//System.out.println("if:"+i + "  wrongly_classified:"+wrongly_classified);
 				}else{
 
-					if (D>0 && dataClass[i] < 0 ) { // check if D > 
+					if (D>0 && classLabel[i] < 0 ) { // check if D > 
 						sign = -1;
 
-					}else if (D < 0 && dataClass[i]>0){
+					}else if (D < 0 && classLabel[i]>0){
 						sign = 1;
 					}
 					w0 =  w0 + (sign * d );
@@ -71,28 +71,28 @@ public class PerceptronLearningAlgo {
 			x2 = testArray_x2[k];
 			D = w0 + w1*x1 + w2*x2;
 			if(D>0){
-				dataClass[k] = 1;
+				classLabel[k] = 1;
 			}else 
-				dataClass[k] = -1;
-			System.out.print(dataClass[k] + " ");
+				classLabel[k] = -1;
+			System.out.print(classLabel[k] + " ");
 		}
 
 	} 
 
-	public static void dataCreation(int trainingArray_x1[],int trainingArray_x2[],int testArray_x1[],int testArray_x2[],int dataClass[]){
+	public static void dataCreation(int trainingArray_x1[],int trainingArray_x2[],int testArray_x1[],int testArray_x2[],int classLabel[]){
 
 		// creating training data set for 50 points 
 		for(int i =1;i<=25;i++) {
 			trainingArray_x1[i] = i;
 			trainingArray_x2[i] = i-1;
-			dataClass[i] = 1;
+			classLabel[i] = 1;
 
 		}
 		for(int i = 26;i<=50;i++){
 
 			trainingArray_x1[i] = i-1;
 			trainingArray_x2[i] = i;
-			dataClass[i] = -1;
+			classLabel[i] = -1;
 
 		}
 		// creating test data points such that 15 of them lie in one class and 15 lie in the other 
