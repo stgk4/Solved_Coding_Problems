@@ -9,5 +9,9 @@ public class RandomNumGen{
     public static int generateRandomNum(){
         return 0;
     }
+    
+    public static int generateRandomNum(int min, int max){
+    	return (max+min)/2;
+    }
 
 }
