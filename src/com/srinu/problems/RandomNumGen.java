@@ -15,7 +15,10 @@ public class RandomNumGen{
     }
     
     public static int generateRandomNum(int min, int max){
-    	return (max+min)/2;
+    	int a = generateRandomNum();
+    	int b = generateRandomNum();
+    	int num = max+min - (a+b);
+    	return num;
     }
 
 }
