@@ -7,7 +7,11 @@ public class RandomNumGen{
     }
     
     public static int generateRandomNum(){
-        return 0;
+    	int num=3;
+    	for(int i=0; i<=10; i++){
+    		 
+    	}
+    	return num;
     }
     
     public static int generateRandomNum(int min, int max){
