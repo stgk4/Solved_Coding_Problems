@@ -1,3 +1,5 @@
+package com.srinu.problems;
+
 import java.util.HashSet;
 
 public class StringDuplicateRemoval {

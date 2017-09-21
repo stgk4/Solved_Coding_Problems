@@ -1,3 +1,5 @@
+package com.srinu.problems;
+
 public class RandomNumGen{
 
     public static void main(String args[]){
