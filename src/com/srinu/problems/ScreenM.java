@@ -32,6 +32,7 @@ public class ScreenM {
 		if(a1_empty && a2_empty && a3_empty){
 			return null;
 		}
+		
 		//Case where two of three arrays are empty
 		else if(a1_empty && a2_empty){
 				return a3;
@@ -40,6 +41,7 @@ public class ScreenM {
 		}else if(a2_empty && a3_empty){
 			return a1;
 		}
+		
 		//Case when only one of the three arrays is empty
 		else if(a1_empty){
 			return merge2Sorted(a2,a3);
