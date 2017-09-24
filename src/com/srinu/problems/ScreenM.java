@@ -43,15 +43,72 @@ public class ScreenM {
 		root.right.left.left.left.left = new TreeNode(13);*/
 
 		root.right.right = new TreeNode(7);
-		root.right.left.right = new TreeNode(8);
-		root.right.right.right = new TreeNode(9);
+		root.left.left.left = new TreeNode(8);
+		root.left.left.right = new TreeNode(9);
 
-		printLevelOrderTree(root);
+		//printLevelOrderTree(root);
+		if(isBinaryTreeHeap(root, 1)) System.out.println("Given binary tree is heap");
+		else System.out.println("Given binary tree is not a heap");
 
 	}
 	
+	public static boolean isBinaryTreeHeap(TreeNode root, int minRmax){
+		if (root==null) return true;
+		
+		//counting nodes and passing ito the property
+		int node_count = countNodes(root);
+		if(minRmax==0)
+			return isComplete(root,0,node_count) && isMinHeap(root);
+		else
+			return isComplete(root,0,node_count) && isMaxHeap(root);
+	}
 	
-	
+	/*
+	 * Method to count the number of nodes in a tree
+	 */
+	private static int countNodes(TreeNode root) {
+		// TODO Auto-generated method stub
+		if(root==null) return 0;
+		return 1 + countNodes(root.left) + countNodes(root.right);
+	}
+
+	/*
+	 * Method to check MaxHeap Property
+	 */
+	private static boolean isMaxHeap(TreeNode root) {
+		//basecase: single isolated node satisfies the property
+		if(root.left==null && root.right==null) return true;
+		
+		//if the node is the last-but-one level
+		if(root.right==null) return root.data>=root.left.data;
+		else{
+			//so the node is some intermediary node
+			//first check the heap property here and then recursively 
+			//call on child nodes
+			if(root.data>=root.left.data && root.data>=root.right.data){
+				return isMaxHeap(root.left) && isMaxHeap(root.right);
+			}else return false;
+		}
+	}
+
+	/*
+	 * Method to check MaxHeap Property
+	 */
+	private static boolean isMinHeap(TreeNode root) {
+		if(root.left==null && root.right==null) return true;
+		if(root.right==null) return root.data<=root.left.data;
+		if(root.data<=root.left.data && root.data<=root.right.data)
+			return isMinHeap(root.left) && isMinHeap(root.right);
+		else return false;
+	}
+	private static boolean isComplete(TreeNode root, int index, int node_count) {
+		if(root==null) return true;
+		
+		if(index>=node_count) return false;
+		
+		return isComplete(root.left, 2*index+1, node_count) && 
+				isComplete(root.right, 2*index+2, node_count);
+	}
 	
 	public static boolean isTreeSimilar(TreeNode t1, TreeNode t2){
 		if(t1==null && t2==null) return true;
