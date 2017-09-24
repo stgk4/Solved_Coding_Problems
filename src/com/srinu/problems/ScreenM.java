@@ -37,8 +37,8 @@ public class ScreenM {
 		root.left.left = new TreeNode(4);
 		root.left.right = new TreeNode(5);
 		root.right.left = new TreeNode(6);
-		
-	/*	root.right.left.left = new TreeNode(11);
+
+		/*	root.right.left.left = new TreeNode(11);
 		root.right.left.left.left = new TreeNode(12);
 		root.right.left.left.left.left = new TreeNode(13);*/
 
@@ -47,14 +47,47 @@ public class ScreenM {
 		root.left.left.right = new TreeNode(9);
 
 		//printLevelOrderTree(root);
-		if(isBinaryTreeHeap(root, 1)) System.out.println("Given binary tree is heap");
-		else System.out.println("Given binary tree is not a heap");
+		//if(isBinaryTreeHeap(root, 1)) System.out.println("Given binary tree is heap");
+		//else System.out.println("Given binary tree is not a heap");
 
+		LLNode n1 = new LLNode(1);
+		n1.next = new LLNode(2);
+		n1.next.next = new LLNode(3);
+
+		printLL(n1);
+		printLL(reverseLinkedList(n1));
 	}
-	
+
+	public static LLNode reverseLinkedList(LLNode node){
+		LLNode previous = null;
+		while(node!=null){
+			LLNode next = node.next;
+			node.next = previous;
+			previous = node;
+			node=next;
+		}
+		return previous;
+	}
+	public static void printLL(LLNode node){
+		while(node!=null){
+			System.out.print(node.data + "->");
+			node=node.next;
+		}
+		System.out.print("NULL\n");
+	}
+
+	static class LLNode{
+		int data;
+		LLNode next;
+		LLNode(int data){
+			this.data = data;
+			next = null;
+		}
+	}
+
 	public static boolean isBinaryTreeHeap(TreeNode root, int minRmax){
 		if (root==null) return true;
-		
+
 		//counting nodes and passing ito the property
 		int node_count = countNodes(root);
 		if(minRmax==0)
@@ -62,7 +95,7 @@ public class ScreenM {
 		else
 			return isComplete(root,0,node_count) && isMaxHeap(root);
 	}
-	
+
 	/*
 	 * Method to count the number of nodes in a tree
 	 */
@@ -78,7 +111,7 @@ public class ScreenM {
 	private static boolean isMaxHeap(TreeNode root) {
 		//basecase: single isolated node satisfies the property
 		if(root.left==null && root.right==null) return true;
-		
+
 		//if the node is the last-but-one level
 		if(root.right==null) return root.data>=root.left.data;
 		else{
@@ -103,31 +136,31 @@ public class ScreenM {
 	}
 	private static boolean isComplete(TreeNode root, int index, int node_count) {
 		if(root==null) return true;
-		
+
 		if(index>=node_count) return false;
-		
+
 		return isComplete(root.left, 2*index+1, node_count) && 
 				isComplete(root.right, 2*index+2, node_count);
 	}
-	
+
 	public static boolean isTreeSimilar(TreeNode t1, TreeNode t2){
 		if(t1==null && t2==null) return true;
 		if(t1==null || t2==null) return false;
 		if(t1.data != t2.data) return false;
-		
+
 		return isTreeSimilar(t1.left,t2.left) && isTreeSimilar(t1.right, t2.right);
 	}
-	
+
 
 	public static boolean isSymmetric_direct(TreeNode root){
 		return isSymmetric_direct(root.left, root.right);
 	}
-	
+
 	private static boolean isSymmetric_direct(TreeNode left, TreeNode right) {
 		// TODO Auto-generated method stub
 		if(left==null && right==null) return true;
 		if(left==null || right==null) return false;
-		
+
 		return isSymmetric_direct(left.left,right.right) && isSymmetric_direct(left.right,right.left);
 	}
 
@@ -144,7 +177,7 @@ public class ScreenM {
 
 		return isEqual(t1.left, t2.left) && isEqual(t1.right, t2.right);
 	}
-	
+
 
 	public static TreeNode reverseTree(TreeNode root){
 		if (root==null) return root;
