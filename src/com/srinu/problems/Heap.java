@@ -3,10 +3,13 @@ package com.srinu.problems;
 public class Heap {
 	
 	public static void main(String[] args){
-		int [] a= {2,3,5,1, 6, 8};
-		Node root = new Node(a[0]);
+		int [] array= {2,3,5,1, 6, 8};
+		
+		buildMaxHeap(array);
+		
+		Node root = new Node(array[0]);
 		//Build a heap with a root element equals first element
-		buildHeap(a, root, 0);
+		buildTreeHeap(array, root, 0);
 		
 		int height = getHeight(root);
 		System.out.println("Height:"+height);
@@ -18,7 +21,35 @@ public class Heap {
 		
 	}
 	
-	public static void buildHeap(int[] array, Node n, int index){
+	public static void buildMaxHeap(int[] array){
+		for(int i=array.length/2; i>=0; i--){
+			maxHeapify(array, i);
+		}
+	}
+	
+	public static void maxHeapify(int[] array, int i){
+		int left = 2*i +1;
+		int right = 2*i +2;
+		int largest = i;
+		
+		if(left<array.length && array[left]>array[largest]){
+			largest = left;
+		}
+		if(right<array.length && array[right]>array[largest]){
+			largest = right;
+		}
+		
+		if(largest!=i){
+			int temp = array[i];
+			array[i] = array[largest];
+			array[largest] = temp;
+			maxHeapify(array, largest);
+		}
+		
+	}
+	
+	
+	public static void buildTreeHeap(int[] array, Node n, int index){
 		int left = 2*index +1;
 		int right = 2*index +2;
 		if(left<array.length){
@@ -29,8 +60,8 @@ public class Heap {
 			n.right = new Node(array[right]);
 		}else return;
 		
-		buildHeap(array, n.left, left);
-		buildHeap(array, n.right, right);
+		buildTreeHeap(array, n.left, left);
+		buildTreeHeap(array, n.right, right);
 	}
 	
 	public static void printAtLevel(Node n, int level){
