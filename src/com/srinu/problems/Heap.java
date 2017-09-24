@@ -6,15 +6,70 @@ public class Heap {
 		int [] array= {2,3,5,1, 6, 8};
 
 		//buildMaxHeap(array);
-		printArray(array);
-		heapSort(array);
-		printArray(array);
+		//heapSort(array);
+		//printArray(array);
+		//levelOrderTraversal(array);
 		
-		levelOrderTraversal(array);
+		int [][] input= {{2,4,5,7,19},{3,6,9,12,17},{1,8,13,18,22}};
+		sortKArrays(input);
+	}
 
+	/*
+	 * given k sorted arrays merging them using a min heap built with k minimum elements of the arrays
+	 * and storing the minimum element of the heap in the output array and replacing it with next minimum
+	 * in the corresponding array (if no element left, replace with infinity or Integer.MAX_ELEMENT).
+	 * Do this until all the arrays are maxed out
+	 */
+	public static int[] sortKArrays(int[][] input){
+		int rows = input.length;
+		int cols = input[0].length;
+		int[] output = new int[rows*cols];
+		int[] k_array = new int[rows];
+		
+		//Using a linear algebra library in java, this could have been simplified
+		//to one step by extracting the first column;
+		for(int i=0; i<rows; i++){
+			k_array[i] = input[i][0];
+		}
+		
+		printArray(k_array);
+		buildMinHeap(k_array);
+		printArray(k_array);
+		
+		
+		return output;
 	}
 	
 	
+	
+	public static void buildMinHeap(int[] array){
+		for(int i=array.length/2; i>=0; i--){
+			minHeapify(array, i, array.length);
+		}
+	}
+
+
+
+
+	private static void minHeapify(int[] array, int i, int length) {
+		// TODO Auto-generated method stub
+		int left = 2*i +1;
+		int right = 2*i +2;
+		int smallest = i;
+		
+		if(left<length && array[left]<array[smallest]){
+			smallest = left;
+		}
+		if(right<length && array[right]<array[smallest]){
+			smallest = right;
+		}
+		
+		if(smallest!=i){
+			swap(array, i, smallest);
+			minHeapify(array,smallest,length);
+		}
+		
+	}
 
 	public static void printArray(int[] array){
 		for(int e: array){
@@ -61,7 +116,7 @@ public class Heap {
 		}
 
 	}
-	
+
 	/*
 	 * Function to swap the ith element and jth element in a given array
 	 */
@@ -85,7 +140,7 @@ public class Heap {
 		buildTreeHeap(array, n.left, left);
 		buildTreeHeap(array, n.right, right);
 	}
-	
+
 	public static void levelOrderTraversal(int[] array){
 		//Build a heap with a root element equals first element
 		Node root = new Node(array[0]);
@@ -125,5 +180,15 @@ public class Heap {
 	}
 
 
+}
+
+class arrayMin{
+	int min;
+	int[] array;
+	arrayMin(int min, int[] array){
+		this.min = min;
+		this.array = array;
+	}
+	
 }
 
