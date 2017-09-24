@@ -37,17 +37,30 @@ public class ScreenM {
 		root.left.left = new TreeNode(4);
 		root.left.right = new TreeNode(5);
 		root.right.left = new TreeNode(6);
-		root.right.left.left = new TreeNode(11);
+		
+	/*	root.right.left.left = new TreeNode(11);
 		root.right.left.left.left = new TreeNode(12);
-		root.right.left.left.left.left = new TreeNode(13);
+		root.right.left.left.left.left = new TreeNode(13);*/
 
 		root.right.right = new TreeNode(7);
 		root.right.left.right = new TreeNode(8);
 		root.right.right.right = new TreeNode(9);
 
-		//printVerticalOrder(root);
+		printLevelOrderTree(root);
 
 	}
+	
+	
+	
+	
+	public static boolean isTreeSimilar(TreeNode t1, TreeNode t2){
+		if(t1==null && t2==null) return true;
+		if(t1==null || t2==null) return false;
+		if(t1.data != t2.data) return false;
+		
+		return isTreeSimilar(t1.left,t2.left) && isTreeSimilar(t1.right, t2.right);
+	}
+	
 
 	public static boolean isSymmetric_direct(TreeNode root){
 		return isSymmetric_direct(root.left, root.right);
@@ -64,7 +77,7 @@ public class ScreenM {
 	public static boolean isSymmetric(TreeNode root){
 		//reverse one half of the tree (say left) and it should now equals to 
 		//right
-		return isEqual(root.left,root.right);
+		return isEqual(reverseTree(root.left),root.right);
 	}
 
 	public static boolean isEqual(TreeNode t1, TreeNode t2){
