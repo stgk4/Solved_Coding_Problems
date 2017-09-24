@@ -65,7 +65,7 @@ public class Misc {
 		int left = 0;
 		int right=a.length-1;
 		int sum;
-		for(;left<right;){
+		for(;left<right;){//while(left<right)
 			sum = a[left]+a[right];
 			if(sum==val) return true;
 			else if(sum>val) --right;

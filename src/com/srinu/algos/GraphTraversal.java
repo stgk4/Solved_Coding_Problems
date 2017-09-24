@@ -1,5 +1,6 @@
 package com.srinu.algos;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Queue;
 
@@ -25,7 +26,7 @@ public class GraphTraversal {
 	}
 	
 	public static void bfs(Node root) {
-		Queue<Node> queue=null;
+		Queue<Node> queue=new ArrayDeque<Node>();
 		root.visited=true;
 		queue.add(root);
 		
