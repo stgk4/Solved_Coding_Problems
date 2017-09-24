@@ -1,5 +1,7 @@
 package com.srinu.problems;
-
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 
 public class ScreenM {
 
@@ -21,18 +23,86 @@ public class ScreenM {
 		
 		//System.out.println(isPalendromeConstantSpace(100));
 		
-		TreeNode root = new TreeNode(1);
-		root.left = new TreeNode(2);
-		root.right = new TreeNode(6);
-		root.left.left = new TreeNode(3);
-		root.left.right = new TreeNode(4);
-		
 		
 		/*printInOrderTree(root);
 		System.out.println("After");
 		printInOrderTree(reverseTree(root));*/
 		
-		printLevelOrderTree(root);
+		//printInOrderTree(root);
+		//printLevelOrderTree(root);
+		
+		TreeNode root = new TreeNode(1);
+		root.left = new TreeNode(2);
+		root.right = new TreeNode(3);
+		root.left.left = new TreeNode(4);
+		root.left.right = new TreeNode(5);
+		root.right.left = new TreeNode(6);
+		root.right.left.left = new TreeNode(11);
+		root.right.left.left.left = new TreeNode(12);
+		root.right.left.left.left.left = new TreeNode(13);
+		
+		root.right.right = new TreeNode(7);
+		root.right.left.right = new TreeNode(8);
+		root.right.right.right = new TreeNode(9);
+		
+		printVerticalOrder(root);
+	}
+	
+	public static void printVerticalOrder(TreeNode root){
+		HashMap<Integer, List<Integer>> hm_Vertical = new HashMap<Integer, List<Integer>>();
+		
+		printVerticalOrder_util(root, 0, hm_Vertical);
+		
+		
+		for(int dist_key: hm_Vertical.keySet()){
+			System.out.print("\nV-Level:"+dist_key + ">> ");
+			for(int node_val:hm_Vertical.get(dist_key)){
+				System.out.print(node_val + " ");
+			}
+		}
+	}
+	
+	public static void printVerticalOrder_util(TreeNode root, int dist, HashMap<Integer, List<Integer>> hm_Vertical){
+		if(root==null) return;
+		
+		if(!hm_Vertical.containsKey(dist)){
+			List<Integer> list = new ArrayList<Integer>();
+			list.add(root.data);
+			hm_Vertical.put(dist,list);
+		}else{
+			hm_Vertical.get(dist).add(root.data);
+		}
+		
+		printVerticalOrder_util(root.left, dist-1, hm_Vertical);
+		printVerticalOrder_util(root.right, dist+1, hm_Vertical);
+	}
+	
+	public static void printDiagonalOrder(TreeNode root){
+		HashMap<Integer, List<Integer>> hm = new HashMap<Integer, List<Integer>>();
+		printDiagonalOrder_util(root, 0, hm);
+		
+		for(int d: hm.keySet()){
+			System.out.print("\nD:"+d + ">> ");
+			for(int val: hm.get(d)){
+				System.out.print(val + " ");
+			}
+		}
+	}
+	
+	private static void printDiagonalOrder_util(TreeNode root, int d, HashMap<Integer, List<Integer>> hm) {
+		// TODO Auto-generated method stub
+		if(root==null) return;
+		
+		if(hm.containsKey(d)){
+			hm.get(d).add(root.data);
+		}else{
+			List<Integer> list = new ArrayList<Integer>();
+			list.add(root.data);
+			hm.put(d,list);
+		}
+		
+		printDiagonalOrder_util(root.left, d+1, hm);
+		printDiagonalOrder_util(root.right, d, hm);
 	}
 	
 	public static void printInOrderTree(TreeNode root){
