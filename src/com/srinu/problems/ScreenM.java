@@ -1,5 +1,6 @@
 package com.srinu.problems;
 
+
 public class ScreenM {
 
 	public static void main(String[] args) {
@@ -18,7 +19,85 @@ public class ScreenM {
 			System.out.print(e + " ");
 		}*/
 		
-		System.out.println(isPalendromeConstantSpace(100));
+		//System.out.println(isPalendromeConstantSpace(100));
+		
+		TreeNode root = new TreeNode(1);
+		root.left = new TreeNode(2);
+		root.right = new TreeNode(6);
+		root.left.left = new TreeNode(3);
+		root.left.right = new TreeNode(4);
+		
+		
+		/*printInOrderTree(root);
+		System.out.println("After");
+		printInOrderTree(reverseTree(root));*/
+		
+		printLevelOrderTree(root);
+	}
+	
+	public static void printInOrderTree(TreeNode root){
+		if(root==null) {System.out.print("NULL ");return;}
+		printInOrderTree(root.left);
+		System.out.print(root.data + " ");
+		printInOrderTree(root.right);
+	}
+	
+	public static void printPreOrderTree(TreeNode root){
+		if(root==null){System.out.print("Null "); return;}
+		System.out.print(root.data + " ");
+		printPreOrderTree(root.left);
+		printPreOrderTree(root.right);
+	}
+	
+	public static void printPostOrderTree(TreeNode root){
+		if(root==null){System.out.print("Null "); return;}
+		printPostOrderTree(root.left);
+		printPostOrderTree(root.right);
+		System.out.println(root.data + " ");
+	}
+	
+	public static void printLevelOrderTree(TreeNode root){
+		if (root==null) return;
+		int level=getHeight(root);
+		System.out.println("Height:"+level);
+		for(int i=1; i<=level; i++){
+			System.out.print("Level-"+i+">> ");
+			printAtLevel(root, i);
+			System.out.println();
+		}
+	}
+	
+	public static void printAtLevel(TreeNode root, int level){
+		if(root==null || level<1) return;
+		if(level==1) System.out.print(root.data + " ");
+		else{
+			printAtLevel(root.left,level-1);
+			printAtLevel(root.right,level-1);
+		}
+	}
+	
+	public static int getHeight(TreeNode root){
+		if(root==null) return 0;
+		return Math.max(getHeight(root.left), getHeight(root.right))+1;
+	}
+	
+	
+	public static TreeNode reverseTree(TreeNode root){
+		if (root==null) return root;
+		
+		TreeNode left = reverseTree(root.left);
+		TreeNode right = reverseTree(root.right);
+		root.left = right;
+		root.right = left;
+		return root;
+	}
+	
+	static class TreeNode{
+		int data;
+		TreeNode left, right;
+		TreeNode(int data){
+			this.data = data;
+		}
 	}
 	
 	public static boolean isPalendromeConstantSpace(int x){
