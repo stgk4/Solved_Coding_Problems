@@ -3,16 +3,35 @@ package com.srinu.problems;
 public class Heap {
 
 	public static void main(String[] args){
-		int [] array= {2,3,5,1, 6, 8};
+		//int [] array= {2,3,5,1, 6, 8};
 
 		//buildMaxHeap(array);
 		//heapSort(array);
 		//printArray(array);
 		//levelOrderTraversal(array);
+
+		//int [][] input= {{2,4,5,7,19},{3,6,9,12,17},{1,8,13,18,22}, {1,12,16,21,44}};
+		//printArray(sortKArrays(input));
 		
-		int [][] input= {{2,4,5,7,19},{3,6,9,12,17},{1,8,13,18,22}, {1,12,16,21,44}};
-		printArray(sortKArrays(input));
+		int[] array1 = {7,4,6,2,1,3};//{2,1,3,7,8,6,4};
+		getKLargest(array1, 4);
+		//heapSort(array1);
+		//printArray(array1);
 	}
+
+	public static void getKLargest(int[] array, int k){
+		buildMaxHeap(array);
+		getKLargest(array, k, array.length);
+	}
+	
+	public static void getKLargest(int[] array, int k, int length){
+		if(k==0) return;
+		swap(array, 0, length-1);
+		System.out.println(array[length-1]);
+		maxHeapify(array, 0, length-1);
+		getKLargest(array, k-1, length-1);
+	}
+
 
 	/*
 	 * given k sorted arrays, merging them using a min heap built with k minimum elements of the arrays
@@ -26,22 +45,22 @@ public class Heap {
 		int output_size = rows*cols;
 		int[] output = new int[output_size];
 		ArrayMin [] k_array = new ArrayMin[rows];
-		
+
 		//Using a linear algebra library in java, this could have been simplified
 		//to one step by extracting the first column;
 		for(int i=0; i<rows; i++){
 			ArrayMin arrayMin = new ArrayMin(input[i][0],0, input[i]);
 			k_array[i] = arrayMin;
 		}
-		
+
 		for(int j=0; j<output_size; j++){
 			buildMinHeap(k_array);
 			output[j] = k_array[0].min; // copy the value in the output array
-			
+
 			int[] current_array = k_array[0].array;
 			int current_array_min_index = k_array[0].min_index;
 			k_array[0].min_index++;// move the index in the current array to the next element
-			
+
 			if(current_array_min_index<current_array.length-1){ //if the next element exists then update the min_element to it
 				k_array[0].min = k_array[0].array[current_array_min_index+1];
 			}else{//else update it to the maximum integer possible (theoretically infinite)
@@ -50,9 +69,9 @@ public class Heap {
 		}
 		return output;
 	}
-	
-	
-	
+
+
+
 	public static void buildMinHeap(ArrayMin[] array){
 		for(int i=array.length/2; i>=0; i--){
 			minHeapify(array, i, array.length);
@@ -67,19 +86,19 @@ public class Heap {
 		int left = 2*i +1;
 		int right = 2*i +2;
 		int smallest = i;
-		
+
 		if(left<length && array[left].min<array[smallest].min){
 			smallest = left;
 		}
 		if(right<length && array[right].min<array[smallest].min){
 			smallest = right;
 		}
-		
+
 		if(smallest!=i){
 			swap(array, i, smallest);
 			minHeapify(array,smallest,length);
 		}
-		
+
 	}
 
 	public static void printArray(int[] array){
@@ -136,7 +155,7 @@ public class Heap {
 		array[i] = array[j];
 		array[j] = temp;
 	}
-	
+
 	public static void swap(ArrayMin[] array, int i, int j){
 		ArrayMin temp = array[i];
 		array[i] = array[j];
@@ -208,6 +227,6 @@ class ArrayMin{
 		this.min_index = min_index;
 		this.array = array;
 	}
-	
+
 }
 
