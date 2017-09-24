@@ -9,15 +9,30 @@ public class ScreenM {
 		}else{
 			System.out.println("Quotient:"+res.quotient + "\n" + "Remainder:"+ res.remainder);
 		}*/
-		int a1[] = {1,2,3};
+		/*int a1[] = {1,2,3};
 		int a2[] = {3,5,18,23};
 		int a3[] = {2,12,24};
 		
 		int[] array = merge3Sorted(a1, a2, a3);
 		for(int e: array){
 			System.out.print(e + " ");
-		}
+		}*/
+		
+		System.out.println(isPalendromeConstantSpace(100));
 	}
+	
+	public static boolean isPalendromeConstantSpace(int x){
+		if(x<0 || (x!=0 && x%10==0)) return false;
+		
+		int reversedNum =0;
+		while(x>reversedNum){
+			reversedNum = reversedNum*10+ (x%10);
+			x/=10;
+		}
+		
+		return x==reversedNum || x==reversedNum/10;
+	}
+	
 	/*
 	 * Method to merge 3 sorted arrays
 	 */
