@@ -49,10 +49,22 @@ public class ScreenM {
 
 	}
 
-	public static boolean isSymmetric(TreeNode t1, TreeNode t2){
+	public static boolean isSymmetric_direct(TreeNode root){
+		return isSymmetric_direct(root.left, root.right);
+	}
+	
+	private static boolean isSymmetric_direct(TreeNode left, TreeNode right) {
+		// TODO Auto-generated method stub
+		if(left==null && right==null) return true;
+		if(left==null || right==null) return false;
+		
+		return isSymmetric_direct(left.left,right.right) && isSymmetric_direct(left.right,right.left);
+	}
+
+	public static boolean isSymmetric(TreeNode root){
 		//reverse one half of the tree (say left) and it should now equals to 
 		//right
-		return isEqual(t1.left,t2.right);
+		return isEqual(root.left,root.right);
 	}
 
 	public static boolean isEqual(TreeNode t1, TreeNode t2){
