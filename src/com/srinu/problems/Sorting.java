@@ -32,6 +32,9 @@ public class Sorting {
 		System.out.println(stringBinarySearch(sa,"abc",0,7));
 	}
 	
+	/*
+	 * String search in a string array with lot of empty spaces
+	 */
 	public static int stringBinarySearch(String[] sa, String str, int low, int high) {
 		if(low>high) return -1;
 		int mid = (low+high)/2;
