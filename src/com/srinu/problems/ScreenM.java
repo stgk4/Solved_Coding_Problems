@@ -31,31 +31,108 @@ public class ScreenM {
 		//printInOrderTree(root);
 		//printLevelOrderTree(root);
 
-		TreeNode root = new TreeNode(1);
+		/*TreeNode root = new TreeNode(1);
 		root.left = new TreeNode(2);
 		root.right = new TreeNode(3);
 		root.left.left = new TreeNode(4);
 		root.left.right = new TreeNode(5);
 		root.right.left = new TreeNode(6);
 
-		/*	root.right.left.left = new TreeNode(11);
+		root.right.left.left = new TreeNode(11);
 		root.right.left.left.left = new TreeNode(12);
-		root.right.left.left.left.left = new TreeNode(13);*/
+		root.right.left.left.left.left = new TreeNode(13);
 
 		root.right.right = new TreeNode(7);
 		root.left.left.left = new TreeNode(8);
-		root.left.left.right = new TreeNode(9);
+		root.left.left.right = new TreeNode(9);*/
 
 		//printLevelOrderTree(root);
 		//if(isBinaryTreeHeap(root, 1)) System.out.println("Given binary tree is heap");
 		//else System.out.println("Given binary tree is not a heap");
 
-		LLNode n1 = new LLNode(1);
+		/*LLNode n1 = new LLNode(1);
 		n1.next = new LLNode(2);
 		n1.next.next = new LLNode(3);
 
 		printLL(n1);
-		printLL(reverseLinkedList(n1));
+		printLL(reverseLinkedList(n1));*/
+		TreeNode root = new TreeNode(8);
+		root.left = new TreeNode(5);
+		root.left.left = new TreeNode(3);
+		root.left.right = new TreeNode(7); //change to 9 for check
+		root.right = new TreeNode(11);
+		root.right.left = new TreeNode(9); //change to 7 for check
+		
+		//System.out.println(isBST(root));
+		//System.out.println(isBST_inorder(root,root.data));
+		System.out.println(inOrderSuccessor(root,11).data);
+	}
+	
+	/*
+	 * Find inorder successor of a given target node
+	 */
+	public static TreeNode inOrderSuccessor(TreeNode root, int target){
+		TreeNode target_Node = null;
+		TreeNode n = root;
+		//finding targetNode
+		while(n!=null){
+			if(n.data==target){
+				target_Node = n;
+				break;
+			}else if(n.data>target){
+				n=n.left;
+			}else{
+				n=n.right;
+			}
+		}
+		
+		//case-1: if rightSubtree of the node is not null
+		if(target_Node.right!=null){
+			return minValue(target_Node.right);
+		}
+		
+		//case-2: start from the root and search the successor down the tree
+		TreeNode succ = new TreeNode(-1);
+		while(root!=null){
+			if(target_Node.data<root.data){
+				succ = root;
+				root = root.left;
+			}else if(target_Node.data>root.data){
+				root = root.right;
+			}else break;
+		}
+		return succ;
+		
+		
+	}
+	
+	private static TreeNode minValue(TreeNode n) {
+		// TODO Auto-generated method stub
+		while(n.left!=null){
+			n=n.left;
+		}
+		return n;
+	}
+
+	public static boolean isBST_inorder(TreeNode root, int prev){
+		if(root==null) return true;
+		isBST_inorder(root.left, root.data);
+		if(root.data<prev) return false;
+		isBST_inorder(root.right,root.data);
+		return true;
+	}
+	
+
+	public static boolean isBST(TreeNode root){
+		return isBST_util(root,Integer.MIN_VALUE, Integer.MAX_VALUE);
+	}
+	public static boolean isBST_util(TreeNode root, int min, int max){
+		if(root==null) return true;
+		
+		if(root.data<min || root.data>max) return false;
+		
+		return isBST_util(root.left, min, root.data-1) &&
+				isBST_util(root.right, root.data+1, max);
 	}
 
 	public static LLNode reverseLinkedList(LLNode node){
