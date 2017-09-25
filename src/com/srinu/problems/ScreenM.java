@@ -2,6 +2,9 @@ package com.srinu.problems;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class ScreenM {
 
@@ -65,7 +68,88 @@ public class ScreenM {
 		
 		//System.out.println(isBST(root));
 		//System.out.println(isBST_inorder(root,root.data));
-		System.out.println(inOrderSuccessor(root,11).data);
+		//System.out.println(inOrderSuccessor(root,11).data);
+		
+		Meeting[] array = {new Meeting(9,10),
+				new Meeting(12,13), 
+				new Meeting(10.5,11), 
+				new Meeting(10,11)};
+		//printMeetingArray(array);
+		Arrays.sort(array,new meetingComparator());
+		//printMeetingArray(array);
+		
+		/*sending previous meeting ending time as maximum possible hour, 
+		theoretically infinite, so that one room is allocated first time
+		assuming a meeting is going on for infinite time*/
+		int rooms = getMaxMeetingRooms(array,25);
+		System.out.println(rooms);
+	}
+	
+	public static int getMaxMeetingRooms(Meeting[] array, double previous){
+		int counter =0;
+		//ArrayList<Meeting> al_endtimes = new ArrayList<Meeting>();
+		for(Meeting m: array){
+			if(m.start<previous) counter++;
+			previous=m.end;
+		}
+		return counter;
+	}
+	/*
+	 * al_endtimes.add(m);
+			Collections.sort(al_endtimes, new meetingEndTimeComparator());
+			
+			if(m.start<al_endtimes.remove(0).end) counter++;
+	 */
+	
+	static class MeetingHeap{
+		Meeting root;
+		Meeting last;
+		
+		void addMeeting(Meeting m){
+			if(root==null) {
+				root =m;
+				last=m;
+			}
+			
+		}
+		
+	}
+	
+	
+	public static void printMeetingArray(Meeting[] arrays){
+		for(Meeting m: arrays){
+			System.out.println(m.start + "," +m.end);
+		}
+		System.out.println("---");
+	}
+	
+	static class meetingComparator implements Comparator<Meeting>{
+
+		@Override
+		public int compare(Meeting m1, Meeting m2) {
+			// TODO Auto-generated method stub
+			return (int)(Math.ceil(m1.start)-Math.ceil(m2.start));
+		}
+		
+	}
+	
+	static class meetingEndTimeComparator implements Comparator<Meeting>{
+
+		@Override
+		public int compare(Meeting m1, Meeting m2) {
+			// TODO Auto-generated method stub
+			return (int)(Math.ceil(m1.end)-Math.ceil(m2.end));
+		}
+		
+	}
+	
+	static class Meeting{
+		double start;
+		double end;
+		Meeting(double start, double end){
+			this.start = start;
+			this.end = end;
+		}
 	}
 	
 	/*
