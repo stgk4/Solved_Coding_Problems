@@ -1,4 +1,4 @@
-package com.srinu.problems;
+package com.srinu.subarrays;
 
 public class Contiguos_Array {
 
