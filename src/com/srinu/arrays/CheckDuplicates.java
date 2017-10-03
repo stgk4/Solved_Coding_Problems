@@ -9,7 +9,7 @@ public class CheckDuplicates {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String sArray[] = {"one", "two", "one", "three"};
-		int iArray[] = {1,2,3,10,4};
+		int iArray[] = {1,2,3,1,4};
 		System.out.println(checkDuplicate_int(iArray));
 	}
 	
@@ -30,8 +30,7 @@ public class CheckDuplicates {
 		//List<Integer> inputList = Arrays.asList(input);
 		Set<Integer> inputSet = new HashSet<Integer>();
 		for(int i: input){
-			if(inputSet.contains(i)) return false;
-			else inputSet.add(i);
+			if(!inputSet.add(i)) return false;
 		}
 		return true;
 	}
