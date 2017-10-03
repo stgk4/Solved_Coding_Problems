@@ -8,6 +8,10 @@ public class Contiguos_Array {
 		subArrayEqualsSum(array, 9);
 	}
 	
+	public static int getEquilibriumPoint(int[] array){
+		
+	}
+	
 	public static void subArrayEqualsSum(int[] array, int sum){
 		int cur_sum = array[0];
 		int start = 0;
