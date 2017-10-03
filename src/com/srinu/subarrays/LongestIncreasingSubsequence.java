@@ -20,8 +20,10 @@ public class LongestIncreasingSubsequence {
 	//Recursive program to get Longest increasing subsequence of the 
 	//sub-array ending at the current index (here)
 	public static int getLis_rec(int array[], int n, int[] Lis){
-		int here = n-1;
+		//base-case
 		if(n==1) return 1;
+		
+		int here = n-1;
 		Lis[here] = 1;
 		int res = 1;
 		for(int i=1; i<n; i++){
