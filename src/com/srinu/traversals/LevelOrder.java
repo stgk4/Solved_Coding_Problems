@@ -14,7 +14,7 @@ public class LevelOrder {
 		node.left.right = new Node(1);
 		node.right.left = new Node(6);
 		node.right.right = new Node(8);
-		printReverseLevelOrder(node);
+		printSpiralLevelOrder(node);
 	}
 	
 	/*
@@ -50,6 +50,41 @@ public class LevelOrder {
 		}
 		
 		while(!stack.isEmpty()) visit(stack.pop());
+	}
+	
+	/*
+	 * Prints the binary tree in a spiral pattern:
+	 * meaning, the even level number rows will print
+	 * from left to right, and odd number level will
+	 * print from right to left
+	 */
+	public static void printSpiralLevelOrder(Node root){
+		Stack<Node> s1 = new Stack<Node>();
+		Stack<Node> s2 = new Stack<Node>();
+		s1.push(root);
+		while(!s1.isEmpty() || !s2.isEmpty()){
+			/*This while loop visits/prints from left to right 
+			 * and adds numbers to other stack(s2) in reverse order
+			 * so that other while loop prints in reverse order
+			 */
+			while(!s1.isEmpty()){
+				Node n = s1.pop();
+				visit(n);
+				if(n.right!=null) s2.push(n.right);
+				if(n.left!=null) s2.push(n.left);
+			}
+			
+			/*
+			 * This visits in reverse order and 
+			 * adds in right order to the Stack(s1)
+			 */
+			while(!s2.isEmpty()){
+				Node n = s2.pop();
+				visit(n);
+				if(n.left!=null) s1.push(n.left);
+				if(n.right!=null) s1.push(n.right);
+			}
+		}
 	}
 	
 	/*
