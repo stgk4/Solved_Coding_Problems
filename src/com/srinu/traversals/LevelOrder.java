@@ -1,6 +1,7 @@
 package com.srinu.traversals;
 import java.util.Queue;
 import java.util.LinkedList;
+import java.util.Stack;
 
 public class LevelOrder {
 
@@ -13,7 +14,7 @@ public class LevelOrder {
 		node.left.right = new Node(1);
 		node.right.left = new Node(6);
 		node.right.right = new Node(8);
-		printLevelOrder(node);
+		printReverseLevelOrder(node);
 	}
 	
 	/*
@@ -35,6 +36,20 @@ public class LevelOrder {
 				visit(n.right);
 			}
 		}
+	}
+	
+	public static void printReverseLevelOrder(Node root){
+		Queue<Node> queue = new LinkedList<Node>();
+		Stack<Node> stack = new Stack<Node>();
+		queue.add(root); //do not visit, just add
+		while(!queue.isEmpty()){
+			Node n = queue.remove();
+			stack.push(n);
+			if(n.right!=null) queue.add(n.right);
+			if(n.left!=null) queue.add(n.left);
+		}
+		
+		while(!stack.isEmpty()) visit(stack.pop());
 	}
 	
 	/*
