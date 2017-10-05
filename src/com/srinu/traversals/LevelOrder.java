@@ -14,7 +14,7 @@ public class LevelOrder {
 		node.left.right = new Node(1);
 		node.right.left = new Node(6);
 		node.right.right = new Node(8);
-		printSpiralLevelOrder(node);
+		printLevelOrder(node);
 	}
 	
 	/*
@@ -24,16 +24,14 @@ public class LevelOrder {
 	public static void printLevelOrder(Node root){
 		Queue<Node> queue = new LinkedList<Node>();
 		queue.add(root);
-		visit(root);
 		while(!queue.isEmpty()){
 			Node n = queue.remove();
+			visit(n);
 			if(n.left!=null){
 				queue.add(n.left);
-				visit(n.left);
 			}
 			if(n.right!=null){
 				queue.add(n.right);
-				visit(n.right);
 			}
 		}
 	}
