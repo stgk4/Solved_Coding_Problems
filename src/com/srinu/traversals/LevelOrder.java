@@ -14,32 +14,59 @@ public class LevelOrder {
 		node.left.right = new Node(1);
 		node.right.left = new Node(6);
 		node.right.right = new Node(8);
-		connectSameLevel_usingLevel(node);
+		connectSameLevel_usingPreorder(node);
 	}
-	
-	
-	
+
+
+	private static void connectSameLevel_usingPreorder(Node node) {
+		// TODO Auto-generated method stub
+		if(node==null) return;
+		
+		if(node.left!=null){ 
+			node.left.nextRight = node.right;
+			System.out.println(node.left.data+"->"+ node.left.nextRight.data);
+		}
+		if(node.right!=null){
+			node.right.nextRight = (node.nextRight!=null)?node.nextRight.left:null;
+			System.out.println(node.right.data+"->"+ (node.right.nextRight!=null?node.right.nextRight.data:"null"));
+		}
+		connectSameLevel_usingPreorder(node.left);
+		connectSameLevel_usingPreorder(node.right);
+	}
+
+
+	/*
+	 * Connecting same level using augmented variable Level
+	 */
 	private static void connectSameLevel_usingLevel(Node root) {
 		// TODO Auto-generated method stub
 		Queue<Node> queue = new LinkedList<Node>();
 		queue.add(root);
-		int cur_level = 1;
-		root.level = cur_level;
+		root.level = 1;
 		while(!queue.isEmpty()){
 			Node n = queue.remove();
-			if(!queue.isEmpty() && n.level!=cur_level){
-				if(n.left!=null) 
-				{
-					n.left.level = cur_level;
-					queue.add(n.left);
-				}
+
+			/*
+			 * checking if nextNode's level is same as current node and 
+			 *only when queue is not empty
+			 */
+			Node nextNode = queue.peek();
+			//Assigning nextRight node in the same level
+			if(!queue.isEmpty() && n.level==nextNode.level) 
+				n.nextRight = nextNode;
+
+			System.out.println(n.data+"->"+(n.nextRight!=null? n.nextRight.data:"null"));
+		
+			if(n.left!=null) 
+			{
+				n.left.level = n.level+1;
+				queue.add(n.left);
 			}
-			else{
-				cur_level+=1;
+			if(n.right!=null){
+				n.right.level = n.level+1;
+				queue.add(n.right);
 			}
 		}
-		
-		
 	}
 
 
@@ -62,7 +89,7 @@ public class LevelOrder {
 			}
 		}
 	}
-	
+
 	public static void printReverseLevelOrder(Node root){
 		Queue<Node> queue = new LinkedList<Node>();
 		Stack<Node> stack = new Stack<Node>();
@@ -73,22 +100,22 @@ public class LevelOrder {
 			if(n.right!=null) queue.add(n.right);
 			if(n.left!=null) queue.add(n.left);
 		}
-		
+
 		while(!stack.isEmpty()) visit(stack.pop());
 	}
-	
+
 	/*
 	 * Connect same level nodes (i.e. next right)
 	 * This is an improvement of BFS/LevelOrder using Queue
 	 * This is implemented by adding null markers after
 	 * end of each level
 	 */
-	
+
 	public static void connectSameLevel(Node root){
 		Queue<Node> queue = new LinkedList<Node>();
 		queue.add(root);
 		queue.add(null); //end of level-1
-		
+
 		while(!queue.isEmpty()){
 			Node n = queue.remove();
 			if(n!=null){
@@ -101,8 +128,8 @@ public class LevelOrder {
 			}
 		}
 	}
-	
-	
+
+
 	/*
 	 * Prints the binary tree in a spiral pattern:
 	 * meaning, the even level number rows will print
@@ -124,7 +151,7 @@ public class LevelOrder {
 				if(n.right!=null) s2.push(n.right);
 				if(n.left!=null) s2.push(n.left);
 			}
-			
+
 			/*
 			 * This visits in correct order and 
 			 * adds children in correct order to the Stack(s1)
@@ -138,7 +165,7 @@ public class LevelOrder {
 			}
 		}
 	}
-	
+
 	/*
 	 * visit method to print the node visited
 	 */
