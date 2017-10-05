@@ -18,6 +18,7 @@ public class LevelOrder {
 	
 	/*
 	 * Printing level order using breadth first search
+	 * This runs in O(n) time and takes O(n) space for recursion stack
 	 */
 	public static void printLevelOrder(Node root){
 		Queue<Node> queue = new LinkedList<Node>();
