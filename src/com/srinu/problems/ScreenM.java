@@ -206,7 +206,7 @@ public class ScreenM {
 		return true;
 	}
 	
-
+	
 	public static boolean isBST(TreeNode root){
 		return isBST_util(root,Integer.MIN_VALUE, Integer.MAX_VALUE);
 	}
