@@ -20,9 +20,11 @@ public class BoundaryTraversal_Btree {
 	}
 	
 	public static void printBoundary(Node node){
-		printLeftBoundary(node);
+		System.out.print(node.data + " ");
+		
+		printLeftBoundary(node.left);
 		printLeafNodes(node);
-		printRightBoundary(node);
+		printRightBoundary(node.right);
 	}
 	
 	public static void printLeftBoundary(Node node){
@@ -54,16 +56,12 @@ public class BoundaryTraversal_Btree {
 	}
 	
 	public static void printRightBoundary(Node node){
-		printRightBoundary(node, node);
-	}
-	
-	public static void printRightBoundary(Node node, Node root){
 		if(node!=null){
 			if(node.right!=null){
-				printRightBoundary(node.right, root);
-				if(node!=root) System.out.print(node.data + " ");
+				printRightBoundary(node.right);
+				System.out.print(node.data + " ");
 			}else if(node.left!=null){
-				printRightBoundary(node.left, root);
+				printRightBoundary(node.left);
 				System.out.print(node.data + " ");
 			}
 		}
