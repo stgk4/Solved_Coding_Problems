@@ -21,6 +21,8 @@ public class VerticalTraversal {
 		root.right.left = new Node(11);
 		root.right.right = new Node(25);
 		verticalTraversal(root);
+		getVerticalLevels(root, 0);
+		System.out.print(vSet.size());
 	}
 	public static void verticalTraversal(Node root) {
 		// TODO Auto-generated method stub
@@ -50,6 +52,9 @@ public class VerticalTraversal {
 	}
 	
 	public static void getVerticalLevels(Node root, int level){
-		
+		if(root==null) return;
+		if(!vSet.contains(level)) vSet.add(level);
+		getVerticalLevels(root.left, level-1);
+		getVerticalLevels(root.right, level+1);
 	}
 }
