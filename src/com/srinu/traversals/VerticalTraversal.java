@@ -2,9 +2,12 @@ package com.srinu.traversals;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
+import java.util.Set;
+import java.util.HashSet;
 
 public class VerticalTraversal {
 
+	public static Set<Integer> vSet = new HashSet<Integer>();
 	public static TreeMap<Integer, ArrayList<Integer>> tm = new TreeMap<Integer, ArrayList<Integer>>();
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -19,7 +22,7 @@ public class VerticalTraversal {
 		root.right.right = new Node(25);
 		verticalTraversal(root);
 	}
-	private static void verticalTraversal(Node root) {
+	public static void verticalTraversal(Node root) {
 		// TODO Auto-generated method stub
 		verticalTraversal(root, 0);
 		
@@ -31,7 +34,7 @@ public class VerticalTraversal {
 		}
 			
 	}
-	private static void verticalTraversal(Node root, int level) {
+	public static void verticalTraversal(Node root, int level) {
 		// TODO Auto-generated method stub
 		if(root==null) return;
 		ArrayList<Integer> nodes_at_level = null;
@@ -43,6 +46,10 @@ public class VerticalTraversal {
 		
 		verticalTraversal(root.left, level-1);
 		verticalTraversal(root.right, level+1);
+		
+	}
+	
+	public static void getVerticalLevels(Node root, int level){
 		
 	}
 }
