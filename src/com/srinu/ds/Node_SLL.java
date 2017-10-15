@@ -52,4 +52,19 @@ public class Node_SLL {
 		}
 		return head;
 	}
+	
+	/*Method to detect if there is a cycle in the linked list
+	 * we chose two pointers-{slow,fast} and move until we either see a null 
+	 * for a fast pointer or when slow==fast
+	 */
+	public boolean isThereACycle(){
+		Node_SLL slow=this, fast=this;
+		while(slow!=null && fast!=null){
+			slow = slow.next;
+			if(fast.next!=null) fast = fast.next.next;
+			else break;
+			if(slow==fast) return true;
+		}
+		return false;
+	}
 }
