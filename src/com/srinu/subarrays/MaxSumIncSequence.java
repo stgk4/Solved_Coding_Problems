@@ -8,7 +8,7 @@ public class MaxSumIncSequence {
 	}
 	
 	/*
-	 * get maximum sum increaseing subsequence
+	 * get maximum sum increasing subsequence
 	 */
 	public static int getMaxSumIS(int[] array, int n){
 		int max = array[0];

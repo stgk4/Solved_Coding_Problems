@@ -154,12 +154,13 @@ public class Sorting {
 	public static String[] sortByAnagrams(String[] array) {
 		Hashtable<String, ArrayList<String>> stringMap = new Hashtable<String, ArrayList<String>>();
 		for(String str: array){
-			ArrayList<String> al = new ArrayList<String>();
+			ArrayList<String> al = null;
 			char[] content= str.toCharArray();
 			Arrays.sort(content);
 			String key = new String(content);
 			System.out.println("key:"+key);
 			if(!stringMap.containsKey(key)){
+				al = new ArrayList<String>();
 				al.add(str);
 				stringMap.put(key, al);
 			}else{
