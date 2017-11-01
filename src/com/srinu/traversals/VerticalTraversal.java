@@ -22,7 +22,7 @@ public class VerticalTraversal {
 		root.right.right = new Node(25);
 		verticalTraversal(root);
 		getVerticalLevels(root, 0);
-		System.out.print(vSet.size());
+		System.out.println("\n\nNum of levels:"+vSet.size());
 	}
 	public static void verticalTraversal(Node root) {
 		// TODO Auto-generated method stub
@@ -30,7 +30,7 @@ public class VerticalTraversal {
 		
 		//print
 		for(int key: tm.keySet()){
-			System.out.print("\nLevel-" + key + ">> ");
+			System.out.print("\nLevel: " + key + " >> ");
 			for(int i: tm.get(key))
 				System.out.print(i + " ");
 		}
