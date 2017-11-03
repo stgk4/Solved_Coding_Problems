@@ -6,7 +6,10 @@ public class BelmondFord {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		//Creating a graph
+		int V = 5;
+		int E = 8;
+		Graph graph = new Graph(V, E);
 	}
 	
 	public static class Graph{
