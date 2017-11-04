@@ -82,13 +82,20 @@ public class BelmondFord {
 			//shortest path from src to any other vertex can have
 			//at-most |V|-1 edges		
 			for(int i=1; i<V; ++i){
+				System.out.println("--------------------------");
+				System.out.println("Iteration-"+i);
+				System.out.println("--------------------------");
 				for(int j=0; j<E; ++j){
 					int u = graph.edges[j].src;
 					int v = graph.edges[j].dest;
 					int weight = graph.edges[j].weight;
 					if(dist[u]!=Integer.MAX_VALUE && 
-							dist[u]+weight<dist[v])
+							dist[u]+weight<dist[v]){
 						dist[v] = dist[u]+weight;
+						System.out.println("EdgeWeightUpdated>> u:" + u + " v:" + v + " Weight:"+weight);
+					}else{
+						System.out.println("EdgeWeighSameAsBefore>> u:" + u + " v:" + v);
+					}			
 				}
 			}
 			
