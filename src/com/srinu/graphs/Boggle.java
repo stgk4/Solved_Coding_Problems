@@ -20,7 +20,7 @@ public class Boggle {
 class BoggleBoard{
 	int size;
 	char [][] board;
-	boolean [][] visited;
+	//boolean [][] visited;
 	public BoggleBoard(int size){
 		this.size = size;
 		board = new char[size][size];
@@ -39,15 +39,15 @@ class BoggleBoard{
 	public void solveBoard(){
 		for(int i=0; i<size; i++){
 			for(int j=0; j<size; j++){
-				visited = new boolean[size][size];
+				boolean visited[][] = new boolean[size][size];
 				StringBuilder sb = new StringBuilder();
-				dfsBoard(i, j, sb, 0);
+				dfsBoard(i, j, sb, visited, 0);
 			}
 		}
 	}
 
-	public void dfsBoard(int i, int j, StringBuilder sb, int count){
-		if(isVisitable(i, j, count)){
+	public void dfsBoard(int i, int j, StringBuilder sb, boolean[][] visited, int count){
+		if(isVisitable(i, j, visited, count)){
 			visited[i][j]=true;
 			count = count+1;
 			sb.append(board[i][j]);
@@ -56,15 +56,14 @@ class BoggleBoard{
 
 			for(int m=-1; m<=1; m++){
 				for(int n=-1; n<=1; n++){
-					dfsBoard(i+m, j+n, sb, count);
+					dfsBoard(i+m, j+n, sb, visited, count);
 				}
 			}
-			visited[i][j] = false;
 		}
 		
 	}
 
-	public boolean isVisitable(int i, int j, int count){
+	public boolean isVisitable(int i, int j, boolean[][] visited, int count){
 		return i<size && i>=0 && j<size && j>=0 && count<7 &&  !visited[i][j];
 	}
 
