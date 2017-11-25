@@ -1,5 +1,7 @@
 package com.srinu.graphs;
 
+import java.util.Random;
+
 public class Boggle {
 
 	public static void main(String[] args) {
@@ -11,8 +13,11 @@ public class Boggle {
 				{'f', 'l', 'b', 'd'},
 				{'e', 'p', 's', 'i'}
 		};
-		boggleBoard.setBoard(input);
-		boggleBoard.solveBoard();
+		//boggleBoard.setBoard(input);
+		//boggleBoard.solveBoard();
+		Random rand = new Random();
+		char c = (char) ('a' + rand.nextInt(26));
+		System.out.println(c);
 	}
 
 }
@@ -37,9 +42,9 @@ class BoggleBoard{
 	}
 
 	public void solveBoard(){
+		boolean visited[][] = new boolean[size][size];
 		for(int i=0; i<size; i++){
 			for(int j=0; j<size; j++){
-				boolean visited[][] = new boolean[size][size];
 				StringBuilder sb = new StringBuilder();
 				dfsBoard(i, j, sb, visited, 0);
 			}
@@ -47,7 +52,6 @@ class BoggleBoard{
 	}
 
 	public void dfsBoard(int i, int j, StringBuilder sb, boolean[][] visited, int count){
-		if(isVisitable(i, j, visited, count)){
 			visited[i][j]=true;
 			count = count+1;
 			sb.append(board[i][j]);
@@ -56,15 +60,18 @@ class BoggleBoard{
 
 			for(int m=-1; m<=1; m++){
 				for(int n=-1; n<=1; n++){
-					dfsBoard(i+m, j+n, sb, visited, count);
+					if(isVisitable(i+m, j+n, visited, count))
+						dfsBoard(i+m, j+n, sb, visited, count);
 				}
 			}
-		}
+			
+			sb.setLength(sb.length()-1);
+			visited[i][j] = false;
 		
 	}
 
 	public boolean isVisitable(int i, int j, boolean[][] visited, int count){
-		return i<size && i>=0 && j<size && j>=0 && count<7 &&  !visited[i][j];
+		return i<size && i>=0 && j<size && j>=0 && count<4 &&  !visited[i][j];
 	}
 
 
