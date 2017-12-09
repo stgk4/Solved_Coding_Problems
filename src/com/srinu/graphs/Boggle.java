@@ -1,28 +1,36 @@
 package com.srinu.graphs;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class Boggle {
+	
+	public static final int word_size=5;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
 		BoggleBoard boggleBoard = new BoggleBoard(4);
 		char[][] input = {
-				{'w', 'i', 'n', 'm'},
-				{'l', 'o', 'r', 'a'},
-				{'f', 'l', 'b', 'd'},
-				{'e', 'p', 's', 'i'}
+				{'j', 'y', 'k', 'e'},
+				{'r', 'e', 'a', 'n'},
+				{'t', 's', 'p', 'l'},
+				{'e', 'o', 'u', 'o'}
 		};
-		//boggleBoard.setBoard(input);
-		//boggleBoard.solveBoard();
-		Random rand = new Random();
-		char c = (char) ('a' + rand.nextInt(26));
-		System.out.println(c);
+		boggleBoard.setBoard(input);
+		boggleBoard.solveBoard();
+		boggleBoard.printWords();
+		//Random rand = new Random();
+		//char c = (char) ('a' + rand.nextInt(26));
+		//System.out.println(c);
 	}
 
 }
 
 class BoggleBoard{
+
+	 ArrayList<String> 	words = new ArrayList<String>();
 	int size;
 	char [][] board;
 	//boolean [][] visited;
@@ -55,7 +63,8 @@ class BoggleBoard{
 			visited[i][j]=true;
 			count = count+1;
 			sb.append(board[i][j]);
-			System.out.println(sb.toString());
+			//System.out.println(sb.toString());
+			 if(count==5) words.add(sb.toString());
 
 
 			for(int m=-1; m<=1; m++){
@@ -71,12 +80,19 @@ class BoggleBoard{
 	}
 
 	public boolean isVisitable(int i, int j, boolean[][] visited, int count){
-		return i<size && i>=0 && j<size && j>=0 && count<4 &&  !visited[i][j];
+		return i<size && i>=0 && j<size && j>=0 && count<5 &&  !visited[i][j];
 	}
 
 
 	public void createBoard(){
 
+	}
+	
+	public void printWords(){
+		Collections.sort(words);
+		for(String s: words){
+			System.out.println(s);
+		}
 	}
 
 
